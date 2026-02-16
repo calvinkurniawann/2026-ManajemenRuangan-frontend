@@ -7,6 +7,7 @@ import CreateBookingForm from "./pages/CreateBookingForm";
 import BookingsPage from "./pages/BookingsPage";
 import PengajuBookingsPage from "./pages/PengajuBookingsPage";
 import CreateRoomPage from "./pages/CreateRoomPage";
+import HistoryPage from "./pages/HistoryPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route index element={<Navigate to="bookings" replace />} />
         <Route path="bookings" element={<BookingsPage />} />
         <Route path="createroom" element={<CreateRoomPage />} />
+        <Route path="history" element={<HistoryPage />} />
       </Route>
 
     </Routes>
