@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5045/api"; 
+const BASE_URL = "http://localhost:5045/api";
 
 export async function fetchData(endpoint: string) {
   const res = await fetch(`${BASE_URL}/${endpoint}`);
@@ -12,7 +12,14 @@ export async function postData(endpoint: string, data: any) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  return res.json();
+
+  const result = await res.json();
+
+  if (!res.ok) {
+    throw new Error(result.message || "Terjadi kesalahan");
+  }
+
+  return result;
 }
 
 export async function putData(endpoint: string, data: any) {
@@ -21,21 +28,39 @@ export async function putData(endpoint: string, data: any) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const result = await res.json();
+
+  if (!res.ok) {
+    throw new Error(result.message || "Terjadi kesalahan");
+  }
+
+  return result;
 }
 
 export async function updateData(endpoint: string, data: any) {
-    const response = await fetch(`http://localhost:5045/api/${endpoint}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
+  const response = await fetch(`${BASE_URL}/${endpoint}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
 
-    if (!response.ok) {
-        throw new Error("Failed to update");
-    }
+  const result = await response.json();
 
-    return response.json();
-}   
+  if (!response.ok) {
+    throw new Error(result.message || "Terjadi kesalahan");
+  }
+
+  return result;
+}
+
+export async function deleteData(endpoint: string) {
+  const res = await fetch(`${BASE_URL}/${endpoint}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || "Gagal menghapus data");
+  }
+
+  return true;
+}
