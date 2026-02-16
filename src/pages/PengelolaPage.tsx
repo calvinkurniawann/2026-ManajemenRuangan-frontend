@@ -17,7 +17,7 @@ export default function PengelolaPage() {
                         Kelola Ruangan
                     </Link>
 
-                    <Link to="bookings" className="bg-gray-700 text-white px-4 py-2 rounded">
+                    <Link to="history" className="bg-gray-700 text-white px-4 py-2 rounded">
                         History
                     </Link>
                 </nav>
