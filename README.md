@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# Sistem Manajemen Peminjaman Ruangan – Backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Deskripsi
+Frontend aplikasi Sistem Manajemen Peminjaman Ruangan Kampus.
+Aplikasi ini menyediakan antarmuka pengguna untuk melakukan peminjaman ruangan, melihat daftar ruangan, mengelola histori peminjaman, serta mengubah status peminjaman sesuai dengan role pengguna (Pengaju dan Pengelola).
 
-Currently, two official plugins are available:
+Frontend terhubung dengan Backend ASP.NET Core Web API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Teknologi
+- React
+- TypeScript
+- Vite
+- TailwindCSS
+- React Router
+- Fetch API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Instalasi
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone Repository
+git clone https:/calvinkurniawann/github.com/calvinkurniawann/2026-ManajemenRuangan-frontend.git
+cd 2026-ManajemenRuangan-frontend
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Install Dependency
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Environment Configuration
+Pastikan backend sudah berjalan terlebih dahulu.
+Edit file berikut jika perlu menyesuaikan URL backend:
+src/api/api.ts
+Ubah BASE_URL sesuai alamat backend, misalnya:
+const BASE_URL = "http://localhost:5045/api";
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Panduan Menjalankan Aplikasi
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Jalankan Aplikasi
+npm run dev
+
+2. Akses Aplikasi
+Buka browser dan akses:
+http://localhost:5173
+
+## Fitur Utama 
+
+### Role Selection
+- Pemilihan role: Pengaju atau Pengelola
+
+### Pengaju
+- Melihat daftar ruangan
+- Membuat peminjaman ruangan
+- Melihat histori peminjaman
+- Filter dan pencarian histori
+- Edit peminjaman (hanya jika status Pending)
+- Hapus peminjaman
+- Validasi konflik ruangan pada tanggal yang sama
+
+### Pengelola
+- Melihat seluruh peminjaman
+- Approve atau Reject peminjaman
+- CRUD Master Data Ruangan
